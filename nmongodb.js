@@ -43,5 +43,6 @@ app.post("/fish_data", async(req, res)=> {
     const _fish_connection = await _fish_connection_();
     const data = _fish_connection.insert(req.body);
     res.send(data);
+    console.log(req.body);
 })
 
