@@ -1,7 +1,7 @@
 const express = require("express");
-const book_connection = require("./mongodb/edudb/book_connection");
-const food_connection = require("./mongodb/shopdb/food_connection");
-const laptop_connection = require("./mongodb/shopdb/laptop_connection");
+const _book_connection = require("./mongodb/edudb/book_connection");
+const _food_connection = require("./mongodb/shopdb/food_connection");
+const laptop_connection_ = require("./mongodb/shopdb/laptop_connection");
 const app = express();
 app.use(express.json());
 const port = 9000;
@@ -19,12 +19,12 @@ app.listen(port, ()=> {
 
 // **************************************************** post section **************************************************************
 app.post("/post", async (req, res) => {
-    const book_connection_ = await book_connection();
+    const book_connection_ = await _book_connection();
     const data = await book_connection_.insert(req.body);
     res.send(data);
 })
 app.post("/food_data", async(req, res)=> {
-    const foo = await food_connection();
+    const foo = await _food_connection();
     const data = await foo.insert(req.body);
     res.send(data);
     // console.log(req.body);
@@ -32,13 +32,13 @@ app.post("/food_data", async(req, res)=> {
 })
 
 app.post("/laptop_data", async(req, res) => {
-    const laptop_connection = await laptop_connection();
+    const laptop_connection = await laptop_connection_();
     const data =laptop_connection.insert(req.body);
     res.send(data);
-    // if("acknowledged"){
-        // console.log("True");
-    // }
+ 
 })
 
+app.post("/fish_data", async(req, res)=> {
+    
+})
 
-// app.post("/")
