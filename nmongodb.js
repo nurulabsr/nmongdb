@@ -1,5 +1,6 @@
 const express = require("express");
 const _book_connection = require("./mongodb/edudb/book_connection");
+const _fish_connection_ = require("./mongodb/shopdb/fish_connection");
 const _food_connection = require("./mongodb/shopdb/food_connection");
 const laptop_connection_ = require("./mongodb/shopdb/laptop_connection");
 const app = express();
@@ -39,6 +40,8 @@ app.post("/laptop_data", async(req, res) => {
 })
 
 app.post("/fish_data", async(req, res)=> {
-    
+    const _fish_connection = await _fish_connection_();
+    const data = _fish_connection.insert(req.body);
+    res.send(data);
 })
 
